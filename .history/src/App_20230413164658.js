@@ -41,32 +41,12 @@ function App() {
       return <li key={dessert.id}>{itemText}</li>;
     });
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const formData = new FormData(event.target);
-    const name = formData.get("name");
-    const email = formData.get("email");
-    const message = formData.get("message");
-    console.log({ name, email, message });
-  };
-
   return (
-    <div className="App">
+    <div>
       <h1>Sorted by price</h1>
       <ul>{listItem}</ul>
 
-      <form onSubmit={handleSubmit}>
-        <h1>Register!</h1>
-        <label htmlFor="name">Name: </label>
-        <input type="text" id="name" name="name" />
-        <br />
-        <br />
-        <label htmlFor="email">Email: </label>
-        <input type="email" id="email" name="email" />
-        <br />
-        <br />
-        <button type="submit">Submit</button>
-      </form>
+      <form onSubmit={handleSubmit}></form>
     </div>
   );
 }

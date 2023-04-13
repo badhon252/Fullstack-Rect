@@ -1,5 +1,5 @@
+import { useEffect } from "react";
 import "./App.css";
-
 const foodItems = [
   {
     id: 1,
@@ -32,41 +32,19 @@ const foodItems = [
     description: "Penne pasta with tomato sauce, basil, and parmesan cheese",
   },
 ];
-
 function App() {
-  const listItem = foodItems
-    .sort((a, b) => a.price - b.price)
-    .map((dessert) => {
+  useEffect(() => {
+    const listItem = foodItems.map((dessert) => {
       const itemText = `${dessert.name} - $${dessert.price}`;
+      const newItems = foodItems.sort((item) => !item.price);
+      console.log(newItems);
       return <li key={dessert.id}>{itemText}</li>;
     });
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const formData = new FormData(event.target);
-    const name = formData.get("name");
-    const email = formData.get("email");
-    const message = formData.get("message");
-    console.log({ name, email, message });
-  };
+  }, []);
 
   return (
-    <div className="App">
-      <h1>Sorted by price</h1>
+    <div>
       <ul>{listItem}</ul>
-
-      <form onSubmit={handleSubmit}>
-        <h1>Register!</h1>
-        <label htmlFor="name">Name: </label>
-        <input type="text" id="name" name="name" />
-        <br />
-        <br />
-        <label htmlFor="email">Email: </label>
-        <input type="email" id="email" name="email" />
-        <br />
-        <br />
-        <button type="submit">Submit</button>
-      </form>
     </div>
   );
 }

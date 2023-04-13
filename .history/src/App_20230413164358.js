@@ -1,5 +1,4 @@
 import "./App.css";
-
 const foodItems = [
   {
     id: 1,
@@ -32,7 +31,6 @@ const foodItems = [
     description: "Penne pasta with tomato sauce, basil, and parmesan cheese",
   },
 ];
-
 function App() {
   const listItem = foodItems
     .sort((a, b) => a.price - b.price)
@@ -41,32 +39,14 @@ function App() {
       return <li key={dessert.id}>{itemText}</li>;
     });
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const formData = new FormData(event.target);
-    const name = formData.get("name");
-    const email = formData.get("email");
-    const message = formData.get("message");
-    console.log({ name, email, message });
-  };
-
+  const sortedByPrice = foodItems.map((items) => {
+    return items.price;
+  });
+  console.log(sortedByPrice.sort((a, b) => a - b));
   return (
-    <div className="App">
+    <div>
       <h1>Sorted by price</h1>
       <ul>{listItem}</ul>
-
-      <form onSubmit={handleSubmit}>
-        <h1>Register!</h1>
-        <label htmlFor="name">Name: </label>
-        <input type="text" id="name" name="name" />
-        <br />
-        <br />
-        <label htmlFor="email">Email: </label>
-        <input type="email" id="email" name="email" />
-        <br />
-        <br />
-        <button type="submit">Submit</button>
-      </form>
     </div>
   );
 }
